@@ -10,7 +10,7 @@
                     <th>Answers</th>
                     <th>Points</th>
                     <th>Actions</th>
-                    <th></th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -21,12 +21,9 @@
                         <td>{{ player.answers }}</td>
                         <td>{{ player.points }}</td>
                         <td>
-                            <button class="button is-primary" v-bind:class="{ 'is-loading' : isDeleting(player.id) }" @click="deletePlayer(player.id)">Delete Player</button>
-                        </td>
-                        <td>
-                            <button class="button is-primary" v-bind:class="{ 'is-loading' : isCountUpdating(player.id) }" @click="answer(player.id, true)">(+1) Right</button>&nbsp;
-                            <button class="button is-primary" v-bind:class="{ 'is-loading' : isCountUpdating(player.id) }" @click="answer(player.id, false)">(-1) Wrong</button>&nbsp;
-                            <button class="button is-primary" v-bind:class="{ 'is-loading' : isDeleting(player.id) }" @click="deletePlayer(player.id)">Delete Player</button>
+                            <button class="btn  btn-primary" v-bind:class="{ 'is-loading' : isCountUpdating(player.id) }" @click="answer(player.id, true)">(+1) Right</button>&nbsp;
+                            <button class="btn  btn-primary" v-bind:class="{ 'is-loading' : isCountUpdating(player.id) }" @click="answer(player.id, false)">(-1) Wrong</button>&nbsp;
+                            <button class="btn  btn-warning" v-bind:class="{ 'is-loading' : isDeleting(player.id) }" @click="deletePlayer(player.id)">Delete Player</button>
                         </td>
                     </tr>
                 </template>
@@ -37,20 +34,20 @@
 
         <div class="column">
             <div class="card" v-if="question">
-                <div class="card-content">
-                    <button class="button is-primary" @click="getQuestion()">Refresh Question</button>
+                <div class="card-content" style="padding: 20px">
+                    <button class="btn btn-dark pull-right" @click="getQuestion()">Refresh Question</button>
                     <p class="title">
-
+                        {{question.question}}
                     </p>
                     <p class="subtitle">
 
                     </p>
                 </div>
-                <footer class="card-footer">
+                <div class="card-footer">
                     <p class="card-footer-item">
-                        <span>Correct answer: </span>
+                        <span>Correct answer: {{question.answer}} </span>
                     </p>
-                </footer>
+                </div>
             </div>
         </div>
     </div>
@@ -92,8 +89,8 @@
         async doGetQuestion() {
             try {
                 const response = await axios.get('/trivia')
-                console.log(response.data.question)
-                this.question = response.data.question
+
+                this.question = response.data
 
             } catch (e) {
                 console.error(e);

@@ -1,14 +1,23 @@
 <template>
     <form @submit.prevent="onSubmit">
         <span class="help is-danger" v-text="errors"></span>
-
-        <div class="field">
-            <div class="control">
-                <input class="input" type="name" placeholder="enter player name..." v-model="name" @keydown="errors = ''">
+<hr>
+        <div class="row" style="padding-bottom: 20px">
+            <div class="col-6">
+                <div class="field">
+                    <div class="control">
+                        <input class="form-control" type="name" placeholder="enter player name..." v-model="name" @keydown="errors = ''">
+                    </div>
+                </div>
             </div>
+            <div class="col-6">
+                <button class="btn  btn-primary" v-bind:class="{ 'is-loading' : isLoading }">Add Player</button>
+            </div>
+
+
+
         </div>
 
-        <button class="button is-primary" v-bind:class="{ 'is-loading' : isLoading }">Add Player</button>
     </form>
 </template>
 

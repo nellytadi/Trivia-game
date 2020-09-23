@@ -1971,6 +1971,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2039,9 +2048,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
 //
 //
 //
@@ -2179,22 +2185,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 response = _context3.sent;
-                console.log(response.data.question);
-                _this3.question = response.data.question;
-                _context3.next = 11;
+                _this3.question = response.data;
+                _context3.next = 10;
                 break;
 
-              case 8:
-                _context3.prev = 8;
+              case 7:
+                _context3.prev = 7;
                 _context3.t0 = _context3["catch"](0);
                 console.error(_context3.t0);
 
-              case 11:
+              case 10:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 8]]);
+        }, _callee3, null, [[0, 7]]);
       }))();
     },
     addPlayer: function addPlayer(player) {
@@ -39330,42 +39335,54 @@ var render = function() {
         domProps: { textContent: _vm._s(_vm.errors) }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "field" }, [
-        _c("div", { staticClass: "control" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.name,
-                expression: "name"
-              }
-            ],
-            staticClass: "input",
-            attrs: { type: "name", placeholder: "enter player name..." },
-            domProps: { value: _vm.name },
-            on: {
-              keydown: function($event) {
-                _vm.errors = ""
-              },
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.name = $event.target.value
-              }
-            }
-          })
-        ])
-      ]),
+      _c("hr"),
       _vm._v(" "),
       _c(
-        "button",
-        {
-          staticClass: "button is-primary",
-          class: { "is-loading": _vm.isLoading }
-        },
-        [_vm._v("Add Player")]
+        "div",
+        { staticClass: "row", staticStyle: { "padding-bottom": "20px" } },
+        [
+          _c("div", { staticClass: "col-6" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.name,
+                      expression: "name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "name", placeholder: "enter player name..." },
+                  domProps: { value: _vm.name },
+                  on: {
+                    keydown: function($event) {
+                      _vm.errors = ""
+                    },
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.name = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn  btn-primary",
+                class: { "is-loading": _vm.isLoading }
+              },
+              [_vm._v("Add Player")]
+            )
+          ])
+        ]
       )
     ]
   )
@@ -39420,25 +39437,7 @@ var render = function() {
                           _c(
                             "button",
                             {
-                              staticClass: "button is-primary",
-                              class: {
-                                "is-loading": _vm.isDeleting(player.id)
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.deletePlayer(player.id)
-                                }
-                              }
-                            },
-                            [_vm._v("Delete Player")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "button is-primary",
+                              staticClass: "btn  btn-primary",
                               class: {
                                 "is-loading": _vm.isCountUpdating(player.id)
                               },
@@ -39454,7 +39453,7 @@ var render = function() {
                           _c(
                             "button",
                             {
-                              staticClass: "button is-primary",
+                              staticClass: "btn  btn-primary",
                               class: {
                                 "is-loading": _vm.isCountUpdating(player.id)
                               },
@@ -39470,7 +39469,7 @@ var render = function() {
                           _c(
                             "button",
                             {
-                              staticClass: "button is-primary",
+                              staticClass: "btn  btn-warning",
                               class: {
                                 "is-loading": _vm.isDeleting(player.id)
                               },
@@ -39499,26 +39498,42 @@ var render = function() {
     _c("div", { staticClass: "column" }, [
       _vm.question
         ? _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-content" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "button is-primary",
-                  on: {
-                    click: function($event) {
-                      return _vm.getQuestion()
+            _c(
+              "div",
+              { staticClass: "card-content", staticStyle: { padding: "20px" } },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-dark pull-right",
+                    on: {
+                      click: function($event) {
+                        return _vm.getQuestion()
+                      }
                     }
-                  }
-                },
-                [_vm._v("Refresh Question")]
-              ),
-              _vm._v(" "),
-              _c("p", { staticClass: "title" }),
-              _vm._v(" "),
-              _c("p", { staticClass: "subtitle" })
-            ]),
+                  },
+                  [_vm._v("Refresh Question")]
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "title" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.question.question) +
+                      "\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "subtitle" })
+              ]
+            ),
             _vm._v(" "),
-            _vm._m(1)
+            _c("div", { staticClass: "card-footer" }, [
+              _c("p", { staticClass: "card-footer-item" }, [
+                _c("span", [
+                  _vm._v("Correct answer: " + _vm._s(_vm.question.answer) + " ")
+                ])
+              ])
+            ])
           ])
         : _vm._e()
     ])
@@ -39539,19 +39554,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Points")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Actions")]),
-        _vm._v(" "),
-        _c("th")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("footer", { staticClass: "card-footer" }, [
-      _c("p", { staticClass: "card-footer-item" }, [
-        _c("span", [_vm._v("Correct answer: ")])
+        _c("th", [_vm._v("Actions")])
       ])
     ])
   }

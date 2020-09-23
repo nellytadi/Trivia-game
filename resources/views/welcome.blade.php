@@ -15,9 +15,12 @@
 <body>
 
 <div id="app">
-    <trivia-game>
+    <div class="container">
+        <trivia-game>
 
-    </trivia-game>
+        </trivia-game>
+    </div>
+
 </div>
 
 <script type="text/javascript" src="js/app.js"></script>
