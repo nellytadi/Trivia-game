@@ -14,8 +14,10 @@ class CreateTriviaTable extends Migration
     public function up()
     {
         Schema::create('trivia', function (Blueprint $table) {
+            $table->id();
             $table->string('question');
             $table->string('answer');
+            $table->timestamps();
         });
     }
 

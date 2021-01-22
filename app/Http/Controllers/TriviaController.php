@@ -7,6 +7,6 @@ use App\Trivia;
 class TriviaController extends Controller
 {
     public function index(){
-        return Trivia::inRandomOrder()->first()->toArray();
+        return json_encode(Trivia::inRandomOrder()->first());
     }
 }
